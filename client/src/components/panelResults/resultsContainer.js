@@ -19,10 +19,12 @@ const ResultsContainer=(props)=>(
                             <li>
                                 <a href={article.web_url}><h3>{article.headline.main}</h3></a>
                                 <h6>{article.pub_date}</h6>
-                                <p>{article.snippet}</p>
+                                {article.snippet}
+                                <br/>
                                 <SaveBtn saveArticle={props.saveArticle} 
                                 link={article.web_url} 
-                                title={article.web_url}
+                                title={article.headline.main}
+                                description={article.snippet}
                                 date={article.pub_date}/>
                             </li>
                         ))}

@@ -1,4 +1,5 @@
 import React from "react";
+import DeleteBtn from "./deletebtn.js"
 
 const SavedContainer=(props)=>(
     <div className="row">
@@ -18,7 +19,8 @@ const SavedContainer=(props)=>(
                             <li>
                                 <a href={article.link}><h3>{article.title}</h3></a>
                                 <h6>{article.pub_date}</h6>
-                                <button>delete</button>
+                                <p>{article.description}</p>
+                                <DeleteBtn deleteArticle={props.deleteArticle} articleId={article._id}/>
                             </li>
                         ))}
                     </ul>

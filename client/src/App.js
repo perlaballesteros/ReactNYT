@@ -14,10 +14,11 @@ class App extends Component {
       articlesStart:"",
       articlesEnd:""
     };
+    //load the saved articles when page loads
     componentDidMount() {
       this.loadSavedarticles();
     }
-  
+    //get all saved articles update the savedArticles state
     loadSavedarticles = () => {
       API.getSavedarticles()
         .then(res => this.setState({ savedArticles: res.data }))
@@ -33,24 +34,36 @@ class App extends Component {
       
     };
     handleFormSubmit = event => {
-      // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+
+      // When the form is submitted, prevent its default behavior, get articles update the articles state
       event.preventDefault();
       const searchTerms={
         q:this.state.articleSearch,
         begin_date:this.state.articlesStart,
         end_date:this.state.articlesEnd
       }
+
       API.getArticles(searchTerms)
         .then(res => this.setState({ articles: res.data }))
         .catch(err => console.log(err));
     };
-    saveArticle=(title,link,date)=>{
+
+    //save articles when save btn is clicked and load articles again
+    saveArticle=(title,link,date,description)=>{
       const articleData={
         title:title,
-        ling:link,
-        date:date
+        link:link,
+        description:description,
+        pub_date:date
       }
-      console.log(articleData);
+      //console.log(articleData);
+      API.saveArticle(articleData).then(()=>{
+        this.loadSavedarticles();
+      });
+    }
+    deleteArticle=(id)=>{
+      console.log(id);
+      //API.deleteSavedarticle(id);
     }
   render() {
     return (
@@ -96,7 +109,7 @@ class App extends Component {
         {/* <!-- This row will handle all of the retrieved articles --> */}
         <ResultsContainer saveArticle={this.saveArticle} articleResults={this.state.articles}/>
         {/* <!-- This row will handle all of the saved articles --> */}
-        <SavedContainer savedArticles={this.state.savedArticles} />
+        <SavedContainer savedArticles={this.state.savedArticles} deleteArticle={this.deleteArticle} />
 
         {/* Footer Region */}
         <Footer/>
