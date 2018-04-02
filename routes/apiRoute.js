@@ -26,7 +26,7 @@ router.route("/savedarticles")
 
 // Matches with "/api/articles/:id"
 router
-  .route("savedarticles/:id")
+  .route("/savedarticles/:id")
   .get(articlesController.findById)
   .put(articlesController.update)
   .delete(articlesController.remove);

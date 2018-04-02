@@ -63,7 +63,9 @@ class App extends Component {
     }
     deleteArticle=(id)=>{
       console.log(id);
-      //API.deleteSavedarticle(id);
+      API.deleteSavedarticle(id).then(()=>{
+        this.loadSavedarticles();
+      });
     }
   render() {
     return (
