@@ -1,6 +1,6 @@
 import React from "react";
 {/* <!-- Jumbotron for Title --> */}
-const ResultsContainer=()=>(
+const ResultsContainer=(props)=>(
     <div className="row">
         <div className="col-sm-12">
         <br/>
@@ -13,6 +13,15 @@ const ResultsContainer=()=>(
                 </div>
                 {/* <!-- This main panel will hold each of the resulting articles --> */}
                 <div className="panel-body" >
+                    <ul>
+                        {props.articleResults.map(article=>(
+                            <li>
+                                <a href={article.web_url}><h3>{article.headline.main}</h3></a>
+                                <p>{article.snippet}</p>
+                                <button>Save</button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>

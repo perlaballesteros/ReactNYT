@@ -26,9 +26,9 @@ class App extends Component {
       // When the form is submitted, prevent its default behavior, get recipes update the recipes state
       event.preventDefault();
       const searchTerms={
-        search:this.state.articleSearch,
-        start:this.state.articlesStart,
-        end:this.articlesEnd
+        q:this.state.articleSearch,
+        begin_date:this.state.articlesStart,
+        end_date:this.state.articlesEnd
       }
       API.getArticles(searchTerms)
         .then(res => this.setState({ articles: res.data }))
@@ -40,7 +40,6 @@ class App extends Component {
       //week6 bootstrap layout
       //Main Bootstrap Search
       <div className="container">
-      
         <Jumbotron/>
         {/* <!-- Row for Searching New York Times --> */}
         <div className="row">
@@ -62,12 +61,12 @@ class App extends Component {
                   {/* <!-- Here we capture the Start Year Parameter--> */}
                   <div className="form-group">
                     <label for="start-year">Start Year (Optional):</label>
-                    <input type="text" className="form-control" id="start-year" name= "articlesStart" onChange={this.updateSearch} placeholder="YYYYMMDD"/>
+                    <input type="text" className="form-control" id="start-year" name= "articlesStart" onChange={this.updateSearch} placeholder="YYYY/MM/DD"/>
                   </div>
                   {/* <!-- Here we capture the End Year Parameter --> */}
                   <div className="form-group">
                     <label for="end-year">End Year (Optional):</label>
-                    <input type="text" className="form-control" id="end-year" name= "articlesEnd" onChange={this.updateSearch} placeholder="YYYYMMDD"/>
+                    <input type="text" className="form-control" id="end-year" name= "articlesEnd" onChange={this.updateSearch} placeholder="YYYY/MM/DD"/>
                   </div>
                   {/* <!-- Here we have our final submit button --> */}
                   <button onClick={this.handleFormSubmit} type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search</button>
@@ -77,7 +76,7 @@ class App extends Component {
          </div>
      </div>
         {/* <!-- This row will handle all of the retrieved articles --> */}
-        <ResultsContainer/>
+        <ResultsContainer articleResults={this.state.articles}/>
         {/* <!-- This row will handle all of the saved articles --> */}
         <SavedContainer/>
         {/* Footer Region */}
