@@ -17,6 +17,7 @@ const ResultsContainer=(props)=>(
                         {props.articleResults.map(article=>(
                             <li>
                                 <a href={article.web_url}><h3>{article.headline.main}</h3></a>
+                                <h6>{article.pub_date}</h6>
                                 <p>{article.snippet}</p>
                                 <button>Save</button>
                             </li>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SavedContainer=()=>(
+const SavedContainer=(props)=>(
     <div className="row">
         <div className="col-sm-12">
         <br/>
@@ -13,6 +13,15 @@ const SavedContainer=()=>(
                 </div>
                 {/* <!-- This main panel will hold each of the resulting articles --> */}
                 <div className="panel-body" >
+                    <ul>
+                        {props.savedArticles.map(article=>(
+                            <li>
+                                <a href={article.link}><h3>{article.title}</h3></a>
+                                <h6>{article.pub_date}</h6>
+                                <button>delete</button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>

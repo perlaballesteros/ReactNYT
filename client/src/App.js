@@ -9,9 +9,19 @@ import Footer from "./components/footer/footer";
 class App extends Component {
     state = {
       articles: [],
+      savedArticles:[],
       articleSearch: "",
       articlesStart:"",
       articlesEnd:""
+    };
+    componentDidMount() {
+      this.loadSavedarticles();
+    }
+  
+    loadSavedarticles = () => {
+      API.getSavedarticles()
+        .then(res => this.setState({ savedArticles: res.data }))
+        .catch(err => console.log(err));
     };
     updateSearch = event => {
       // Destructure the name and value properties off of event.target
@@ -78,7 +88,8 @@ class App extends Component {
         {/* <!-- This row will handle all of the retrieved articles --> */}
         <ResultsContainer articleResults={this.state.articles}/>
         {/* <!-- This row will handle all of the saved articles --> */}
-        <SavedContainer/>
+        <SavedContainer savedArticles={this.state.savedArticles} />
+
         {/* Footer Region */}
         <Footer/>
       </div>
