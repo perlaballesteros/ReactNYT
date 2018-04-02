@@ -44,6 +44,14 @@ class App extends Component {
         .then(res => this.setState({ articles: res.data }))
         .catch(err => console.log(err));
     };
+    saveArticle=(title,link,date)=>{
+      const articleData={
+        title:title,
+        ling:link,
+        date:date
+      }
+      console.log(articleData);
+    }
   render() {
     return (
       
@@ -86,7 +94,7 @@ class App extends Component {
          </div>
      </div>
         {/* <!-- This row will handle all of the retrieved articles --> */}
-        <ResultsContainer articleResults={this.state.articles}/>
+        <ResultsContainer saveArticle={this.saveArticle} articleResults={this.state.articles}/>
         {/* <!-- This row will handle all of the saved articles --> */}
         <SavedContainer savedArticles={this.state.savedArticles} />
 

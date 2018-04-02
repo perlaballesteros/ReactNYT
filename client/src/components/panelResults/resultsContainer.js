@@ -1,4 +1,5 @@
 import React from "react";
+import SaveBtn from "./savebtn.js";
 {/* <!-- Jumbotron for Title --> */}
 const ResultsContainer=(props)=>(
     <div className="row">
@@ -19,7 +20,10 @@ const ResultsContainer=(props)=>(
                                 <a href={article.web_url}><h3>{article.headline.main}</h3></a>
                                 <h6>{article.pub_date}</h6>
                                 <p>{article.snippet}</p>
-                                <button>Save</button>
+                                <SaveBtn saveArticle={props.saveArticle} 
+                                link={article.web_url} 
+                                title={article.web_url}
+                                date={article.pub_date}/>
                             </li>
                         ))}
                     </ul>

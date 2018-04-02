@@ -14,7 +14,18 @@ app.use(express.static("client/build"));
 app.use("/api",routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = "mongodb://localhost/nytreact";
+if(process.env.MONGODB_URI){
+  mongoose.Promise = Promise;
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else{
+  // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+}
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {
