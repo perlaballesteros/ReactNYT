@@ -19,7 +19,7 @@ router.get("/articles", (req, res) => {
     res.json(response.docs))
     .catch(err => res.status(422).json(err));
 });
-// Matches with "/api/books"
+// Matches with "/api/articles"
 router.route("/savedarticles")
   .get(articlesController.findAll)
   .post(articlesController.create);
@@ -27,7 +27,5 @@ router.route("/savedarticles")
 // Matches with "/api/articles/:id"
 router
   .route("/savedarticles/:id")
-  .get(articlesController.findById)
-  .put(articlesController.update)
   .delete(articlesController.remove);
 module.exports = router;

@@ -1,6 +1,6 @@
 import React from "react";
 import SaveBtn from "./savebtn.js";
-{/* <!-- Jumbotron for Title --> */}
+
 const ResultsContainer=(props)=>(
     <div className="row">
         <div className="col-sm-12">
@@ -15,8 +15,8 @@ const ResultsContainer=(props)=>(
                 {/* <!-- This main panel will hold each of the resulting articles --> */}
                 <div className="panel-body" >
                     <ul>
-                        {props.articleResults.map(article=>(
-                            <li>
+                        {props.articleResults.map((article,index)=>(
+                            <li key={"result-item-"+index} >
                                 <a href={article.web_url}><h3>{article.headline.main}</h3></a>
                                 <h6>{article.pub_date}</h6>
                                 {article.snippet}

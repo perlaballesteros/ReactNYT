@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import API from "./utils/API";
 import Jumbotron from "./components/jumbotron/jumbotron";
-import FormConatiner from "./components/panelForm/formContainer";
 import ResultsContainer from "./components/panelResults/resultsContainer";
 import SavedContainer from "./components/panelSaved/savedContainer";
 import Footer from "./components/footer/footer";
@@ -34,7 +33,6 @@ class App extends Component {
       
     };
     handleFormSubmit = event => {
-
       // When the form is submitted, prevent its default behavior, get articles update the articles state
       event.preventDefault();
       const searchTerms={
@@ -42,7 +40,6 @@ class App extends Component {
         begin_date:this.state.articlesStart,
         end_date:this.state.articlesEnd
       }
-
       API.getArticles(searchTerms)
         .then(res => this.setState({ articles: res.data }))
         .catch(err => console.log(err));
@@ -61,6 +58,7 @@ class App extends Component {
         this.loadSavedarticles();
       });
     }
+    //delete the saved article and update the saved articles state
     deleteArticle=(id)=>{
       console.log(id);
       API.deleteSavedarticle(id).then(()=>{
@@ -85,20 +83,20 @@ class App extends Component {
               </div>
               <div className="panel-body">
                 {/* <!-- Here we create an HTML Form for handling the inputs--> */}
-                <form role="form">
+                <form>
                   {/* <!-- Here we create the text box for capturing the search term--> */}
                   <div className="form-group">
-                    <label for="search">Search Term:</label>
+                    <label>Search Term:</label>
                     <input name= "articleSearch" onChange={this.updateSearch} value={this.state.articleSearch} type="text" className="form-control" id="search-term" placeholder="Search For a Articles"/>
                   </div>
                   {/* <!-- Here we capture the Start Year Parameter--> */}
                   <div className="form-group">
-                    <label for="start-year">Start Year (Optional):</label>
+                    <label>Start Year (Optional):</label>
                     <input type="text" className="form-control" id="start-year" name= "articlesStart" onChange={this.updateSearch} placeholder="YYYY/MM/DD"/>
                   </div>
                   {/* <!-- Here we capture the End Year Parameter --> */}
                   <div className="form-group">
-                    <label for="end-year">End Year (Optional):</label>
+                    <label>End Year (Optional):</label>
                     <input type="text" className="form-control" id="end-year" name= "articlesEnd" onChange={this.updateSearch} placeholder="YYYY/MM/DD"/>
                   </div>
                   {/* <!-- Here we have our final submit button --> */}
@@ -106,8 +104,8 @@ class App extends Component {
                 </form>
               </div>
             </div>
-         </div>
-     </div>
+          </div>
+        </div>
         {/* <!-- This row will handle all of the retrieved articles --> */}
         <ResultsContainer saveArticle={this.saveArticle} articleResults={this.state.articles}/>
         {/* <!-- This row will handle all of the saved articles --> */}
@@ -115,7 +113,7 @@ class App extends Component {
 
         {/* Footer Region */}
         <Footer/>
-      </div>
+    </div>
     );
   }
 }

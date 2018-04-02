@@ -15,8 +15,8 @@ const SavedContainer=(props)=>(
                 {/* <!-- This main panel will hold each of the resulting articles --> */}
                 <div className="panel-body" >
                     <ul>
-                        {props.savedArticles.map(article=>(
-                            <li>
+                        {props.savedArticles.map((article,index)=>(
+                            <li key={"list-item-"+index}>
                                 <a href={article.link}><h3>{article.title}</h3></a>
                                 <h6>{article.pub_date}</h6>
                                 <p>{article.description}</p>
