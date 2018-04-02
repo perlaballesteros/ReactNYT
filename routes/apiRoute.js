@@ -1,5 +1,7 @@
 const axios = require("axios");
 const router = require("express").Router();
+const articlesController = require("../controllers/articlesController");
+
 
 router.get("/articles", (req, res) => {
   let url;
@@ -17,5 +19,15 @@ router.get("/articles", (req, res) => {
     res.json(response.docs))
     .catch(err => res.status(422).json(err));
 });
+// Matches with "/api/books"
+router.route("/savedarticles")
+  .get(articlesController.findAll)
+  .post(articlesController.create);
 
+// Matches with "/api/articles/:id"
+router
+  .route("savedarticles/:id")
+  .get(articlesController.findById)
+  .put(articlesController.update)
+  .delete(articlesController.remove);
 module.exports = router;
