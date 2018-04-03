@@ -15,8 +15,8 @@ ReactNYT allows users to search the New York Times API.Users the option of searc
 *[Bootstrap](http://getbootstrap.com/) - Styling and layout
 
 ## Acknowledgments
-*Arizona Bootcamp HW Exmaples:
-  *06-week/03-day/16-NYTSearch: bootstrap layout, NYT API link, and NYT API key
-  *20-week/08-Stu_Recipes: routes,API requests and display
-  *20-week/09-Stu_AJAXBooks: Setup the database connection, CRUD mongoose operations.
+**Arizona Bootcamp HW Exmaples:**
+*06-week/03-day/16-NYTSearch: bootstrap layout, NYT API link, and NYT API key
+*20-week/08-Stu_Recipes: routes,API requests and display
+*20-week/09-Stu_AJAXBooks: Setup the database connection, CRUD mongoose operations.
 
