@@ -1,6 +1,6 @@
 # ReactNYT
 ## By Perla E. Ballesteros
-
+![Demo gif](./client/public/AppDemos/ReactNYTApp.gif)
 [Demo Video](https://www.youtube.com/edit?o=U&video_id=ztJSL-2XkA4)
 
 ##Description:
